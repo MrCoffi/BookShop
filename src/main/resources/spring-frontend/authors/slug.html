@@ -5,7 +5,6 @@
     <meta name="description" content="Описание страницы">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <link href="favicon.ico" rel="shortcut icon">
     <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-SemiBold.woff2" as="font" crossorigin="anonymous">
     <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Light.woff2" as="font" crossorigin="anonymous">
     <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Medium.woff2" as="font" crossorigin="anonymous">
@@ -15,6 +14,7 @@
     <link rel="stylesheet" href="/assets/css/extra.min.css?v=93601584">
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script defer src="/assets/js/scripts.min.js?v=93601584"></script>
+    <link  th:href="@{/favicon.ico}" href="favicon.ico" rel="shortcut icon">
 </head>
 <body class="Site">
 <header class="Header"
@@ -23,12 +23,12 @@
     <div class="wrap">
         <main class="Middle-main">
             <ul class="breadcrumbs"
-                th:replace="~{fragments/breadcrumb_fragment :: breadcrumps(category='Борис Васильевич Бедный')}"></ul>
-            <div th:replace="~{fragments/author_article_fragment :: article(author='Борис Васильевич Бедный')}"></div>
+                th:replace="~{fragments/breadcrumb_fragment :: breadcrumps(category=${author.name})}"></ul>
+            <div th:replace="~{fragments/author_article_fragment :: article(author=${author})}"></div>
             <div class="Section"
-                 th:replace="~{fragments/book_slider_fragment :: bookSlider(title='Книги автора')}"></div>
-            <footer class="Section-footer"><a class="Author-books" th:href="@{/books/author}" href="/books/author.html">Все
-                книги автора<span
+                 th:replace="~{fragments/book_slider_fragment :: bookSlider(title='Книги автора',load='authors',bookType=${authorList})}"></div>
+            <footer class="Section-footer"><a class="Author-books" th:href="'/books/author/'+${author.name}" href="/books/author.html">Все
+                книги автора<span th:text="${author.getBookList().size()}"
                         class="Author-amount">(55)</span></a>
             </footer>
         </main>

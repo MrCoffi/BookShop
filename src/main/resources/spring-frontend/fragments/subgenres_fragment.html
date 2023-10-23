@@ -1,0 +1,28 @@
+<th:block th:fragment="subgenres(subgenreList)">
+    <th:block th:each="subgenre : ${subgenreList}">
+        <div th:class="${subgenre.subgenres.isEmpty()} ? 'Tag' : 'Tags'">
+            <th:block th:if="${not subgenre.subgenres.isEmpty()}">
+                <!-- Теги с вложенными жанрами -->
+                <div class="Tags-title">
+                    <div class="Tag">
+                        <a href="/genres/slug.html" th:href="@{'/genres/' + ${subgenre.slug}}">
+                            <span th:text="${subgenre.name}"></span>
+                            <span class="undefined-amount" th:text="(${subgenre.books.size()})"></span>
+                        </a>
+                    </div>
+                </div>
+                <div th:replace="~{fragments/subgenres_fragment :: subgenres(subgenreList=${subgenre.subgenres})}"></div>
+            </th:block>
+            <th:block th:with="hasSubgenres=${subgenre.subgenres.isEmpty()}">
+                <th:block th:if="${hasSubgenres}">
+                    <!-- Теги без вложенных жанров -->
+                    <a href="/genres/slug.html" th:href="@{'/genres/' + ${subgenre.slug}}">
+                        <span th:text="${subgenre.name}"></span>
+                        <span class="undefined-amount" th:text="(${subgenre.books.size()})"></span>
+                    </a>
+
+                </th:block>
+            </th:block>
+        </div>
+    </th:block>
+</th:block>

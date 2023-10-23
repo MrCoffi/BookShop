@@ -22,14 +22,15 @@
                     </div>
                     <div class="Header-search">
                         <div class="search">
-                            <form class="form form_search" action="/search" method="post" data-searchlimit="20">
-                                <input class="search-input" id="query" name="query" type="text"
-                                       placeholder="Search over 30 million book titles" value=""/>
+                            <form class="form form_search" action="/search" method="post" data-searchlimit="5"
+                            th:object="${searchWorldDto}">
+                                <input class="search-input" id="query" name="query" type="text" placeholder="Search over 30 million book titles" value="" th:field="*{example}"/>
                                 <button class="search-button" type="submit" name="search" id="search">Поиск
                                 </button>
                             </form>
                         </div>
                     </div>
+                    <span th:if="${searchError}" th:text="${searchError.getLocalizedMessage()}" style="color: red"></span>
                 </div>
                 <div class="row-block Header-cart" th:replace="~{fragments/cart_block_fragment :: ${status}}"></div>
                 <div class="row-block Header-trigger"><a class="menuTrigger" href="#navigate">
@@ -47,10 +48,10 @@
                         <a class="menu-link" href="/" th:text="#{topbar.main}">Главная</a>
                     </li>
                     <li class="menu-item">
-                        <a class="menu-link" href="/genre" th:text="#{topbar.genres}">Жанры</a>
+                        <a class="menu-link" href="/genres" th:text="#{topbar.genres}">Жанры</a>
                     </li>
                     <li class="menu-item">
-                        <a class="menu-link" href="/newBook" th:text="#{topbar.news}">Новинки</a>
+                        <a class="menu-link" href="/books/recent" th:text="#{topbar.news}">Новинки</a>
                     </li>
                     <li class="menu-item">
                         <a class="menu-link" href="/books/popular" th:text="#{topbar.popular}">Популярное</a>
