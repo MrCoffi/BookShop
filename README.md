@@ -21,4 +21,13 @@ To ensure the safety of customer transactions, Spring Securety will be integrate
 🔜 Future Plans:
 In the future, the plan is to continue the development of the bookstore by incorporating additional features like user reviews and ratings, personalized recommendations, and a user-friendly admin dashboard for managing book inventory and orders.
 
+
+
+What remains to be done:
+Add an External service for phone login. 📱
+Implement functionality for balance top-up. 💰
+Implement functionality for purchasing a book. 📚
+Implement functionality for changing account details on the /profile page. 🔄
+
+
 🌟 Thank you for your interest in this ongoing development project. Stay tuned for further updates and enhancements! ✨💻🚀
